@@ -14,7 +14,7 @@ button, a { font: inherit; }
 .backdrop::after { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 0 59%, rgba(194,163,102,.09) 59.1%, transparent 59.4%), linear-gradient(115deg, transparent 0 62%, rgba(63,67,69,.045) 62.1%, transparent 62.25%); }
 .grain { pointer-events: none; position: absolute; z-index: -1; inset: 0; opacity: .12; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.17'/%3E%3C/svg%3E"); }
 .header { height: 112px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(63,67,69,.16); animation: rise .8s .08s both; }
-.brand { width: 176px; display: flex; align-items: center; }
+.brand { width: 176px; display: flex; align-items: center; padding: 10px 12px; background: #929292; border-radius: 6px; }
 .brand img { display: block; width: 100%; height: auto; }
 .header-right { display: flex; align-items: center; gap: clamp(24px, 5vw, 76px); }
 .status { color: rgba(63,67,69,.82); font: 500 9px 'Manrope', sans-serif; letter-spacing: .17em; }
