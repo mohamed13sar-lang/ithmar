@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { LAUNCH_AT } from './launch-config';
 
-type Language = 'FR' | 'EN' | 'AR';
+
 const copy = {
   FR: { status: 'SITE EN CONSTRUCTION', eyebrow: 'ITHMAR CAPITAL · MAROC', title: <>UNE NOUVELLE<br />EXPÉRIENCE DIGITALE<br /><em>SE PRÉPARE.</em></>, body: 'Ithmar Capital prépare le lancement de sa nouvelle plateforme digitale. Une nouvelle expérience pour découvrir nos activités, nos investissements et notre engagement pour le développement.', until: 'AVANT LE LANCEMENT', days: 'JOURS', hours: 'HEURES', minutes: 'MINUTES', seconds: 'SECONDES', soon: 'LANCEMENT IMMINENT', stay: 'Restez à l’écoute.', footer: 'Investir pour les générations futures.' },
   EN: { status: 'COMING SOON', eyebrow: 'ITHMAR CAPITAL · MOROCCO', title: <>A NEW DIGITAL<br />EXPERIENCE IS<br /><em>ON ITS WAY.</em></>, body: 'Ithmar Capital is preparing to launch its new digital platform. A new way to discover our activities, investments and commitment to development.', until: 'UNTIL LAUNCH', days: 'DAYS', hours: 'HOURS', minutes: 'MINUTES', seconds: 'SECONDS', soon: 'LAUNCHING SOON', stay: 'Stay tuned.', footer: 'Investing for future generations.' },
@@ -16,7 +16,7 @@ function getRemaining() {
 }
 
 export default function Home() {
-  const [language, setLanguage] = useState<Language>('FR');
+  const language = 'FR' as keyof typeof copy;
   const [remaining, setRemaining] = useState<ReturnType<typeof getRemaining> | null>(null);
   useEffect(() => {
     setRemaining(getRemaining());
@@ -28,26 +28,24 @@ export default function Home() {
 
   return (
     <main className={`landing ${rtl ? 'rtl' : ''}`} dir={rtl ? 'rtl' : 'ltr'}>
-      <div className="backdrop" aria-hidden="true" />
-      <div className="grain" aria-hidden="true" />
       <header className="header">
         <a className="brand" href="https://www.ithmar.gov.ma/" aria-label="Ithmar Capital — site officiel">
           {/* Official logo from Ithmar Capital's public website; retain source proportions and colors. */}
           <img src="/ithmar-logo.png" alt="Ithmar Capital" />
         </a>
-        <div className="header-right">
+        <div className="header-right" style={{ visibility: 'hidden' }} aria-hidden="true">
           <span className="status"><i />{t.status}</span>
-          <nav className="languages" aria-label="Choose language">
-            {(['FR', 'EN', 'AR'] as Language[]).map((lang, index) => <span key={lang} className="lang-wrap"><button onClick={() => setLanguage(lang)} aria-pressed={language === lang}>{lang}</button>{index < 2 && <b aria-hidden="true">/</b>}</span>)}
+          <nav className="languages">
+            {(['FR', 'EN', 'AR'] as const).map((lang, index) => <span key={lang} className="lang-wrap"><button tabIndex={-1}>{lang}</button>{index < 2 && <b>/</b>}</span>)}
           </nav>
         </div>
       </header>
 
-      <section className="hero" aria-labelledby="hero-title">
+      <section className="hero" aria-label="Compte à rebours du lancement">
         <div className="hero-copy">
-          <p className="eyebrow"><span />{t.eyebrow}</p>
-          <h1 id="hero-title">{t.title}</h1>
-          <p className="description">{t.body}</p>
+          <p className="eyebrow" style={{ visibility: 'hidden' }} aria-hidden="true"><span />{t.eyebrow}</p>
+          <h1 style={{ visibility: 'hidden' }} aria-hidden="true">{t.title}</h1>
+          <p className="description" style={{ visibility: 'hidden' }} aria-hidden="true">{t.body}</p>
           <div className="countdown-block">
             <p className="countdown-label">{t.until}</p>
             {remaining?.ended ? <p className="launched">{t.soon}</p> : <div className="countdown" aria-label={remaining ? `${remaining.days} ${t.days}, ${remaining.hours} ${t.hours}, ${remaining.minutes} ${t.minutes}, ${remaining.seconds} ${t.seconds}` : undefined}>

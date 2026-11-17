@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { color-scheme: light; --gold: #92713a; --ink: #3f4345; --surface: #faf9f6; }
+:root { color-scheme: light; --gold: #92713a; --ink: #3f4345; --surface: #ffffff; }
 * { box-sizing: border-box; }
 html, body { min-height: 100%; margin: 0; }
 body { background: var(--surface); color: var(--ink); font-family: 'DM Sans', sans-serif; }
